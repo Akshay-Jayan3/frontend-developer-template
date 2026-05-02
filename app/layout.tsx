@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
+import SmoothScroll from "@/components/SmoothScroll";
 import { portfolio } from "@/data/portfolio";
 
 export const metadata: Metadata = {
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   },
   description: portfolio.bio[0],
   keywords: [
-    "Frontend Engineer", "Design Engineer", "React Developer", 
+    "Frontend Engineer", "Design Engineer", "React Developer",
     "Next.js", "TypeScript", "Tailwind CSS", "Web Development", portfolio.name
   ],
   authors: [{ name: portfolio.name }],
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
     siteName: `${portfolio.name} Portfolio`,
     images: [
       {
-        url: "/og-image.jpg", // You can add an og-image.jpg to your public folder later
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: `${portfolio.name} — ${portfolio.role}`,
@@ -61,7 +62,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="cursor-default md:cursor-none">
         <CustomCursor />
-        {children}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );
