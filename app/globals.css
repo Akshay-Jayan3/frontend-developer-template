@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-bg: var(--bg);
+  --color-brand-bg2: var(--bg2);
+  --color-brand-bg3: var(--bg3);
+  --color-brand-text: var(--text);
+  --color-brand-muted: var(--muted);
+  --color-brand-accent: var(--accent);
+  --color-brand-accent2: var(--accent2);
+  --color-brand-border: var(--border-color);
+  
+  --font-syne: var(--font-syne);
+  --font-sans: var(--font-dm-sans);
+}
+
+:root {
+  --bg: #080808;
+  --bg2: #0f0f0f;
+  --bg3: #161616;
+  --text: #f0ede6;
+  --muted: #7a7672;
+  
+  /* Primary Accent Switch (Default Gold Theme) */
+  --accent: #e8d5a3;
+  --accent2: #c9a96e;
+  
+  /* Try other themes by uncommenting */
+  /* Blue Theme */
+  /* --accent: #93c5fd; --accent2: #3b82f6; */
+  
+  /* Green Theme */
+  /* --accent: #86efac; --accent2: #22c55e; */
+  
+  /* Purple Theme */
+  /* --accent: #d8b4fe; --accent2: #a855f7; */
+  
+  --border-color: rgba(255, 255, 255, 0.07);
+  --font-syne: 'Syne', sans-serif;
+  --font-dm-sans: 'DM Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-dm-sans);
+  overflow-x: hidden;
+}
+
+/* Hide default cursor on devices that support hover so our custom cursor shines */
+@media (hover: hover) and (pointer: fine) {
+  body, *, a, button {
+    cursor: none !important;
+  }
+}
+
+::selection {
+  background-color: var(--accent2);
+  color: var(--bg);
+}
