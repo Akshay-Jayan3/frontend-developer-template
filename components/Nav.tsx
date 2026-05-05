@@ -14,7 +14,7 @@ export default function Nav() {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-12 py-4 transition-all duration-300 ${scrolled ? 'bg-brand-bg/85 backdrop-blur-md border-b border-brand-border' : 'bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-12 py-4 transition-all duration-300 ${scrolled ? 'bg-brand-bg/85 backdrop-blur-md' : 'bg-transparent'}`}>
       <div className="font-syne font-extrabold text-lg tracking-tight text-brand-accent">
         {portfolio.name}.
       </div>

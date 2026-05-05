@@ -45,10 +45,6 @@ export default function Projects() {
                 ))}
               </div>
             </div>
-
-            <div className={`hidden md:block text-2xl transition-all duration-300 ${hovered === i ? 'text-brand-accent -translate-y-1 translate-x-1' : 'text-brand-muted'}`}>
-              ↗
-            </div>
           </motion.a>
         ))}
       </div>
