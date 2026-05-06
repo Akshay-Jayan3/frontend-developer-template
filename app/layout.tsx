@@ -6,7 +6,7 @@ import { portfolio } from "@/data/portfolio";
 
 export const metadata: Metadata = {
   title: {
-    default: `${portfolio.name} — ${portfolio.role}`,
+    default: `${portfolio.name} - ${portfolio.role}`,
     template: `%s | ${portfolio.name}`,
   },
   description: portfolio.bio[0],
@@ -16,12 +16,12 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: portfolio.name }],
   creator: portfolio.name,
-  metadataBase: new URL(`https://${portfolio.contact.github}`),
+  metadataBase: new URL(`https://${portfolio.contact.portfolio}`),
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "/",
-    title: `${portfolio.name} — ${portfolio.role}`,
+    title: `${portfolio.name} - ${portfolio.role}`,
     description: portfolio.bio[0],
     siteName: `${portfolio.name} Portfolio`,
     images: [
@@ -29,13 +29,13 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: `${portfolio.name} — ${portfolio.role}`,
+        alt: `${portfolio.name} - ${portfolio.role}`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${portfolio.name} — ${portfolio.role}`,
+    title: `${portfolio.name} - ${portfolio.role}`,
     description: portfolio.bio[0],
     images: ["/og-image.jpg"],
   },

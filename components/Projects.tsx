@@ -1,5 +1,6 @@
 "use client";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import Image from "next/image";
 import { useRef, useState } from "react";
 import { portfolio } from "@/data/portfolio";
 
@@ -7,24 +8,24 @@ export default function Projects() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const [hovered, setHovered] = useState<number | null>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <section id="work" ref={ref} className="py-20 md:py-28 px-6 md:px-12 border-t border-brand-border">
       <div className="text-xs tracking-widest uppercase text-brand-accent2 mb-12 flex items-center gap-4">
-        Selected Work <span className="text-brand-muted text-[10px]">03</span>
+        Selected Work <span className="text-brand-muted text-[10px]">04</span>
       </div>
 
       <div className="flex flex-col">
         {portfolio.projects.map((project, i) => (
-          <motion.a
+          <motion.article
             key={i}
-            href={project.url}
             initial={{ opacity: 0, x: -16 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
+            transition={{ duration: shouldReduceMotion ? 0.01 : 0.5, delay: shouldReduceMotion ? 0 : i * 0.1, ease: "easeOut" }}
             onMouseEnter={() => setHovered(i)}
             onMouseLeave={() => setHovered(null)}
-            className={`group grid grid-cols-1 md:grid-cols-[80px_1fr_auto] items-start md:items-center gap-4 md:gap-8 border-b border-brand-border transition-all duration-300 no-underline text-inherit ${i === 0 ? 'border-t' : ''} ${hovered === i ? 'py-8 md:pl-4' : 'py-8'}`}
+            className={`group relative grid grid-cols-1 md:grid-cols-[80px_minmax(0,1fr)_auto] items-start md:items-center gap-5 md:gap-8 border-b border-brand-border transition-all duration-300 ${i === 0 ? 'border-t' : ''} ${hovered === i && !shouldReduceMotion ? 'py-8 md:pl-4' : 'py-8'}`}
           >
             <div className={`hidden md:block font-syne text-xs tracking-widest transition-colors duration-200 ${hovered === i ? 'text-brand-accent' : 'text-brand-muted'}`}>
               0{i + 1}
@@ -45,7 +46,45 @@ export default function Projects() {
                 ))}
               </div>
             </div>
-          </motion.a>
+
+            <div className="flex md:justify-end">
+              {project.action ? (
+                <a
+                  href={project.action.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-4 inline-flex text-xs md:text-sm px-4 py-2 border border-brand-accent2 text-brand-accent bg-transparent rounded-sm tracking-wide no-underline transition-all duration-200 hover:bg-brand-accent2 hover:text-brand-bg"
+                >
+                  {project.action.label}
+                </a>
+              ) : project.url !== "#" ? (
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-4 inline-flex text-xs uppercase tracking-widest text-brand-muted no-underline transition-colors duration-200 hover:text-brand-accent"
+                >
+                  View
+                </a>
+              ) : null}
+            </div>
+
+            {project.overlayImage ? (
+              <>
+                <motion.div
+                  initial={false}
+                  animate={hovered === i && !shouldReduceMotion ? { opacity: 1, x: 0, scale: 1, rotate: -1 } : { opacity: 0, x: 18, scale: 0.96, rotate: 0 }}
+                  transition={{ duration: 0.28, ease: "easeOut" }}
+                  className="pointer-events-none absolute right-0 top-1/2 z-20 hidden w-[min(34vw,420px)] -translate-y-1/2 overflow-hidden border border-brand-border bg-brand-bg2 shadow-2xl shadow-black/40 lg:block"
+                >
+                  <Image src={project.overlayImage} alt="" width={920} height={560} className="block h-auto w-full" />
+                </motion.div>
+                <div className="md:col-start-2 lg:hidden overflow-hidden border border-brand-border bg-brand-bg2">
+                  <Image src={project.overlayImage} alt={project.overlayAlt ?? ""} width={920} height={560} className="block h-auto w-full" />
+                </div>
+              </>
+            ) : null}
+          </motion.article>
         ))}
       </div>
     </section>

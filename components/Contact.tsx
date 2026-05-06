@@ -8,16 +8,17 @@ export default function Contact() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   const items = [
-    { type: "Email", value: portfolio.contact.email },
-    { type: "LinkedIn", value: portfolio.contact.linkedin },
-    { type: "GitHub", value: portfolio.contact.github },
+    { type: "Email", value: portfolio.contact.email, href: `mailto:${portfolio.contact.email}` },
+    { type: "Portfolio", value: portfolio.contact.portfolio, href: `https://${portfolio.contact.portfolio}` },
+    { type: "LinkedIn", value: portfolio.contact.linkedin, href: `https://www.${portfolio.contact.linkedin}` },
+    { type: "GitHub", value: portfolio.contact.github, href: portfolio.contact.github },
     { type: "Location", value: portfolio.location },
   ];
 
   return (
     <section id="contact" ref={ref} className="py-20 md:py-28 px-6 md:px-12 border-t border-brand-border">
       <div className="text-xs tracking-widest uppercase text-brand-accent2 mb-12 flex items-center gap-4">
-        Contact <span className="text-brand-muted text-[10px]">04</span>
+        Contact <span className="text-brand-muted text-[10px]">05</span>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-start">
@@ -48,9 +49,15 @@ export default function Contact() {
               <span className="text-xs uppercase tracking-widest text-brand-muted">
                 {item.type}
               </span>
-              <span className="text-sm md:text-base text-brand-accent">
-                {item.value}
-              </span>
+              {item.href ? (
+                <a href={item.href} target={item.type === "Email" ? undefined : "_blank"} rel={item.type === "Email" ? undefined : "noreferrer"} className="text-sm md:text-base text-brand-accent no-underline transition-colors duration-200 hover:text-brand-text">
+                  {item.value}
+                </a>
+              ) : (
+                <span className="text-sm md:text-base text-brand-accent">
+                  {item.value}
+                </span>
+              )}
             </div>
           ))}
         </motion.div>

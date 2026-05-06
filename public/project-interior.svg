@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="560" viewBox="0 0 920 560" fill="none">
+  <rect width="920" height="560" fill="#080808"/>
+  <rect x="34" y="34" width="852" height="492" fill="#0F0F0F" stroke="#2A2927"/>
+  <rect x="72" y="76" width="776" height="244" fill="#1A1815"/>
+  <rect x="72" y="76" width="360" height="244" fill="#C9A96E"/>
+  <path d="M432 76h416v244H432z" fill="#25211B"/>
+  <rect x="108" y="112" width="206" height="20" rx="10" fill="#080808"/>
+  <rect x="108" y="154" width="250" height="58" rx="4" fill="#080808"/>
+  <rect x="108" y="238" width="134" height="36" rx="2" fill="#080808"/>
+  <rect x="488" y="116" width="288" height="148" fill="#0F0F0F" stroke="#4B402D"/>
+  <path d="M516 238h232l-70-78-46 48-32-34-84 64z" fill="#E8D5A3"/>
+  <rect x="72" y="360" width="220" height="104" fill="#161616" stroke="#2A2927"/>
+  <rect x="350" y="360" width="220" height="104" fill="#161616" stroke="#2A2927"/>
+  <rect x="628" y="360" width="220" height="104" fill="#161616" stroke="#2A2927"/>
+  <g fill="#8F8982">
+    <rect x="98" y="394" width="148" height="10" rx="5"/>
+    <rect x="376" y="394" width="148" height="10" rx="5"/>
+    <rect x="654" y="394" width="148" height="10" rx="5"/>
+  </g>
+  <text x="74" y="506" fill="#E8D5A3" font-family="Arial, sans-serif" font-size="28" font-weight="700">Interior Studio</text>
+</svg>

@@ -1,5 +1,5 @@
 "use client";
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import { portfolio } from "@/data/portfolio";
 import { useRef } from "react";
 
@@ -15,6 +15,7 @@ const containerAnimation = {
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
   
   // Scroll-triggered exit
   const { scrollYProgress } = useScroll({
@@ -22,8 +23,8 @@ export default function Hero() {
     offset: ["start start", "end start"]
   });
   
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? ["0%", "0%"] : ["0%", "40%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], shouldReduceMotion ? [1, 1] : [1, 0]);
 
   // Magnetic effect for accent text
   const mouseX = useMotionValue(0);
@@ -33,6 +34,7 @@ export default function Hero() {
   const smoothY = useSpring(mouseY, { damping: 15, stiffness: 150 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (shouldReduceMotion) return;
     const { clientX, clientY, currentTarget } = e;
     const { left, top, width, height } = currentTarget.getBoundingClientRect();
     const x = clientX - (left + width / 2);
@@ -98,9 +100,16 @@ export default function Hero() {
           className="flex flex-col md:flex-row justify-between items-start md:items-end mt-10 pt-8 border-t border-brand-border gap-8"
         >
           <p className="max-w-[38ch] text-base md:text-lg text-brand-muted leading-relaxed font-light">
-            I design and build high-quality web products — where code meets craft.
-            CSS systems, design systems, and everything in between.
+            {portfolio.heroIntro}
           </p>
+          <div className="flex flex-wrap items-center gap-3">
+            <a href="#work" className="text-sm px-5 py-2 border border-brand-accent2 text-brand-accent bg-transparent rounded-sm tracking-wide no-underline transition-all duration-200 hover:bg-brand-accent2 hover:text-brand-bg">
+              View work
+            </a>
+            <a href="https://pixeldosa.gumroad.com/l/isjsu" target="_blank" rel="noreferrer" className="text-sm px-5 py-2 border border-brand-border text-brand-muted bg-transparent rounded-sm tracking-wide no-underline transition-colors duration-200 hover:text-brand-text hover:border-brand-accent2">
+              Download Hoot
+            </a>
+          </div>
           <div className="text-xs tracking-widest uppercase text-brand-muted flex md:flex-col items-center gap-2">
             <motion.div 
               initial={{ height: 0 }}
