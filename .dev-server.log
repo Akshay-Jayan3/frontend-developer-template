@@ -1,0 +1,23 @@
+
+> pixeldosa-portfolio@0.1.0 dev
+> next dev
+
+⚠ Port 3000 is in use by process 15920, using available port 3001 instead.
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://192.168.31.216:3001
+✓ Ready in 1082ms
+⨯ Another next dev server is already running.
+
+- Local:        http://localhost:3000
+- PID:          15920
+- Dir:          D:\AIwebsites\pixeldosa-portfolio
+- Log:          .next\dev\logs\next-development.log
+
+Run taskkill /PID 15920 /F to stop it.
+[?25h
+npm notice 
+npm notice New major version of npm available! 9.1.2 -> 11.17.0
+npm notice Changelog: <https://github.com/npm/cli/releases/tag/v11.17.0>
+npm notice Run `npm install -g npm@11.17.0` to update!
+npm notice 

@@ -2,6 +2,7 @@
 import { motion, useReducedMotion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import { portfolio } from "@/data/portfolio";
 import { useRef } from "react";
+import { CircleScribble } from "@/components/Doodle";
 
 const wordAnimation = {
   hidden: { opacity: 0, y: 20 },
@@ -78,15 +79,21 @@ export default function Hero() {
               <motion.span key={i} variants={wordAnimation} className="inline-block">{word}</motion.span>
             ))}
           </div>
-          <motion.div 
-            className="text-brand-accent overflow-hidden inline-block cursor-none"
+          <motion.div
+            className="relative inline-block cursor-none"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             style={{ x: smoothX, y: smoothY }}
           >
-            {portfolio.tagline[1].split(' ').map((word, i) => (
-              <motion.span key={i} variants={wordAnimation} className="inline-block mr-4 md:mr-8">{word}</motion.span>
-            ))}
+            <div className="text-brand-accent overflow-hidden">
+              {portfolio.tagline[1].split(' ').map((word, i) => (
+                <motion.span key={i} variants={wordAnimation} className="inline-block mr-4 md:mr-8">{word}</motion.span>
+              ))}
+            </div>
+            <CircleScribble
+              delay={1.3}
+              className="pointer-events-none absolute -left-[5%] -top-[28%] w-[110%] h-[156%]"
+            />
           </motion.div><br />
           <div className="overflow-hidden flex flex-wrap gap-x-4">
             {portfolio.tagline[2].split(' ').map((word, i) => (

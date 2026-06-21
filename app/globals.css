@@ -36,8 +36,6 @@
   /* --accent: #d8b4fe; --accent2: #a855f7; */
   
   --border-color: rgba(255, 255, 255, 0.07);
-  --font-syne: 'Syne', sans-serif;
-  --font-dm-sans: 'DM Sans', sans-serif;
 }
 
 html { scroll-behavior: smooth; }
