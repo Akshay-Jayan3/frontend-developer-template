@@ -13,9 +13,6 @@ function Corner({ position, label }: { position: string; label: string }) {
 export default function GridOverlay() {
   return (
     <div className="pointer-events-none fixed inset-0 z-30" aria-hidden="true">
-      <div className="absolute inset-y-0 left-6 hidden w-px bg-brand-border md:left-12 lg:block" />
-      <div className="absolute inset-y-0 right-6 hidden w-px bg-brand-border md:right-12 lg:block" />
-
       <Corner position="left-4 top-4 md:left-6 md:top-6" label="01" />
       <Corner position="right-4 top-4 md:right-6 md:top-6" label="02" />
       <Corner position="bottom-4 left-4 md:bottom-6 md:left-6" label="03" />

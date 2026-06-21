@@ -42,27 +42,14 @@ export default function CustomCursor() {
   if (!isVisible) return null;
 
   return (
-    <>
-      <motion.div
-        className="fixed top-0 left-0 h-4 w-4 pointer-events-none z-[9999] rounded-full bg-white mix-blend-difference"
-        animate={{
-          x: mousePosition.x - 8,
-          y: mousePosition.y - 8,
-          scale: isHovered ? 3 : 1,
-        }}
-        transition={{ type: "tween", ease: "backOut", duration: 0.15 }}
-      />
-      <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999] whitespace-nowrap font-syne text-[10px] tracking-widest text-brand-muted/50"
-        animate={{
-          x: mousePosition.x + 18,
-          y: mousePosition.y + 14,
-          opacity: isHovered ? 0 : 1,
-        }}
-        transition={{ type: "tween", ease: "backOut", duration: 0.15 }}
-      >
-        {String(Math.round(mousePosition.x)).padStart(4, "0")}, {String(Math.round(mousePosition.y)).padStart(4, "0")}
-      </motion.div>
-    </>
+    <motion.div
+      className="fixed top-0 left-0 h-4 w-4 pointer-events-none z-[9999] rounded-full bg-white mix-blend-difference"
+      animate={{
+        x: mousePosition.x - 8,
+        y: mousePosition.y - 8,
+        scale: isHovered ? 3 : 1,
+      }}
+      transition={{ type: "tween", ease: "backOut", duration: 0.15 }}
+    />
   );
 }

@@ -13,10 +13,10 @@ function ExperienceRow({ item, index, inView }: { item: ExperienceItem; index: n
       initial={{ opacity: 0, y: 28 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: shouldReduceMotion ? 0.01 : 0.65, delay: shouldReduceMotion ? 0 : index * 0.12, ease: [0.22, 1, 0.36, 1] }}
-      className="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-6 lg:gap-12 py-10 md:py-12 border-b border-brand-border"
+      className="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-6 lg:gap-12 py-10 md:py-12"
     >
       <div>
-        <div className="font-syne text-xs tracking-widest uppercase text-brand-accent mb-3">
+        <div className="font-syne text-xs tracking-widest uppercase text-brand-muted mb-3">
           {item.period}
         </div>
         <div className="text-sm text-brand-muted leading-relaxed">
@@ -52,7 +52,7 @@ function ExperienceRow({ item, index, inView }: { item: ExperienceItem; index: n
 
         <div className="flex flex-wrap gap-2">
           {item.tags.map((tag) => (
-            <span key={tag} className="text-[10px] md:text-xs px-2 md:px-3 py-1 border border-brand-border text-brand-muted tracking-wide uppercase">
+            <span key={tag} className="text-[10px] md:text-xs px-2 md:px-3 py-1 rounded-full bg-brand-bg2 text-brand-muted tracking-wide uppercase">
               {tag}
             </span>
           ))}
@@ -67,12 +67,12 @@ export default function Experience() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="experience" ref={ref} className="py-20 md:py-28 px-6 md:px-12 border-t border-brand-border">
-      <div className="text-xs tracking-widest uppercase text-brand-accent2 mb-12 flex items-center gap-4">
+    <section id="experience" ref={ref} className="py-20 md:py-28 px-6 md:px-12">
+      <div className="text-xs tracking-widest uppercase text-brand-muted mb-12 flex items-center gap-4">
         Experience <span className="text-brand-muted text-[10px]">02</span>
       </div>
 
-      <div className="border-t border-brand-border">
+      <div>
         {portfolio.experience.map((item, index) => (
           <ExperienceRow key={`${item.role}-${item.period}`} item={item} index={index} inView={inView} />
         ))}

@@ -16,8 +16,8 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" ref={ref} className="py-20 md:py-28 px-6 md:px-12 border-t border-brand-border">
-      <div className="text-xs tracking-widest uppercase text-brand-accent2 mb-12 flex items-center gap-4">
+    <section id="contact" ref={ref} className="py-20 md:py-28 px-6 md:px-12">
+      <div className="text-xs tracking-widest uppercase text-brand-muted mb-12 flex items-center gap-4">
         Contact <span className="text-brand-muted text-[10px]">05</span>
       </div>
 
@@ -29,7 +29,7 @@ export default function Contact() {
         >
           <h2 className="font-syne text-[clamp(2.5rem,5vw,4.5rem)] font-extrabold leading-[0.95] tracking-tight">
             Let&apos;s build<br />
-            <em className="italic text-brand-accent font-normal">something</em><br />
+            <em className="italic text-brand-text font-normal">something</em><br />
             great.
           </h2>
           <p className="mt-8 text-brand-muted font-light max-w-[30ch] leading-[1.8] text-base md:text-lg">
@@ -45,16 +45,16 @@ export default function Contact() {
           className="pt-4"
         >
           {items.map((item, i) => (
-            <div key={i} className={`py-6 flex flex-col md:flex-row md:justify-between md:items-center gap-2 border-b border-brand-border ${i === 0 ? 'border-t border-brand-border' : ''}`}>
+            <div key={i} className="py-6 flex flex-col md:flex-row md:justify-between md:items-center gap-2">
               <span className="text-xs uppercase tracking-widest text-brand-muted">
                 {item.type}
               </span>
               {item.href ? (
-                <a href={item.href} target={item.type === "Email" ? undefined : "_blank"} rel={item.type === "Email" ? undefined : "noreferrer"} className="text-sm md:text-base text-brand-accent no-underline transition-colors duration-200 hover:text-brand-text">
+                <a href={item.href} target={item.type === "Email" ? undefined : "_blank"} rel={item.type === "Email" ? undefined : "noreferrer"} className="text-sm md:text-base text-brand-text no-underline transition-colors duration-200 hover:text-brand-accent">
                   {item.value}
                 </a>
               ) : (
-                <span className="text-sm md:text-base text-brand-accent">
+                <span className="text-sm md:text-base text-brand-text">
                   {item.value}
                 </span>
               )}

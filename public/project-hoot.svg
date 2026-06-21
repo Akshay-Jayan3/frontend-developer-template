@@ -1,25 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="920" height="560" viewBox="0 0 920 560" fill="none">
-  <rect width="920" height="560" fill="#080808"/>
-  <rect x="36" y="36" width="848" height="488" rx="18" fill="#0F0F0F" stroke="#2A2927"/>
-  <rect x="76" y="78" width="236" height="236" rx="16" fill="#161616" stroke="#3D3525"/>
-  <circle cx="194" cy="196" r="72" fill="#C9A96E"/>
-  <circle cx="194" cy="196" r="24" fill="#080808"/>
-  <rect x="348" y="86" width="260" height="22" rx="11" fill="#F0EDE6"/>
-  <rect x="348" y="124" width="420" height="12" rx="6" fill="#8F8982"/>
-  <rect x="348" y="166" width="472" height="8" rx="4" fill="#2A2927"/>
-  <rect x="348" y="166" width="312" height="8" rx="4" fill="#C9A96E"/>
-  <g fill="#8F8982">
+  <rect width="920" height="560" fill="#0c0e0d"/>
+  <rect x="36" y="36" width="848" height="488" rx="18" fill="#141715" stroke="#262b27"/>
+  <rect x="76" y="78" width="236" height="236" rx="16" fill="#1c201d" stroke="#123a28"/>
+  <circle cx="194" cy="196" r="72" fill="#0fae66"/>
+  <circle cx="194" cy="196" r="24" fill="#0c0e0d"/>
+  <rect x="348" y="86" width="260" height="22" rx="11" fill="#f1f3ef"/>
+  <rect x="348" y="124" width="420" height="12" rx="6" fill="#8b9590"/>
+  <rect x="348" y="166" width="472" height="8" rx="4" fill="#262b27"/>
+  <rect x="348" y="166" width="312" height="8" rx="4" fill="#0fae66"/>
+  <g fill="#8b9590">
     <rect x="348" y="230" width="430" height="16" rx="8"/>
     <rect x="348" y="274" width="372" height="16" rx="8"/>
     <rect x="348" y="318" width="452" height="16" rx="8"/>
     <rect x="348" y="362" width="326" height="16" rx="8"/>
   </g>
-  <g stroke="#E8D5A3" stroke-width="8" stroke-linecap="round">
+  <g stroke="#1fd97e" stroke-width="8" stroke-linecap="round">
     <path d="M418 446h84"/>
     <path d="M544 446h84"/>
     <path d="M666 446h84"/>
   </g>
-  <path d="M568 424l42 24-42 24v-48z" fill="#E8D5A3"/>
-  <text x="76" y="470" fill="#E8D5A3" font-family="Arial, sans-serif" font-size="42" font-weight="700">Hoot</text>
-  <text x="76" y="498" fill="#8F8982" font-family="Arial, sans-serif" font-size="18">offline desktop music player</text>
+  <path d="M568 424l42 24-42 24v-48z" fill="#1fd97e"/>
+  <text x="76" y="470" fill="#1fd97e" font-family="Arial, sans-serif" font-size="42" font-weight="700">Hoot</text>
+  <text x="76" y="498" fill="#8b9590" font-family="Arial, sans-serif" font-size="18">offline desktop music player</text>
 </svg>

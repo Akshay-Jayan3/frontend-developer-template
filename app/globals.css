@@ -4,47 +4,125 @@
   --color-brand-bg: var(--bg);
   --color-brand-bg2: var(--bg2);
   --color-brand-bg3: var(--bg3);
+  --color-brand-paper: var(--paper);
+  --color-brand-ink: var(--ink);
   --color-brand-text: var(--text);
   --color-brand-muted: var(--muted);
   --color-brand-accent: var(--accent);
   --color-brand-accent2: var(--accent2);
   --color-brand-border: var(--border-color);
-  
-  --font-syne: var(--font-syne);
-  --font-sans: var(--font-dm-sans);
+  --color-brand-accent-glow: var(--accent-glow);
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-mono);
+
+  /* aliases so existing font-syne / font-dm-sans utility classes repoint to the new pairing */
+  --font-syne: var(--font-fraunces);
+  --font-dm-sans: var(--font-mono);
 }
 
 :root {
-  --bg: #080808;
-  --bg2: #0f0f0f;
-  --bg3: #161616;
-  --text: #f0ede6;
-  --muted: #8f8982;
-  
-  /* Primary Accent Switch (Default Gold Theme) */
-  --accent: #e8d5a3;
-  --accent2: #c9a96e;
-  
-  /* Try other themes by uncommenting */
-  /* Blue Theme */
-  /* --accent: #93c5fd; --accent2: #3b82f6; */
-  
-  /* Green Theme */
-  /* --accent: #86efac; --accent2: #22c55e; */
-  
-  /* Purple Theme */
-  /* --accent: #d8b4fe; --accent2: #a855f7; */
-  
-  --border-color: rgba(255, 255, 255, 0.07);
+  /* Warm near-black base — never pure black, gives glass something to refract */
+  --bg: #0c0e0d;
+  --bg2: #141715;
+  --bg3: #1c201d;
+
+  --paper: #ffffff;
+  --ink: #14181a;
+
+  --text: #f1f3ef;
+  --muted: #8b9590;
+
+  /* Deep, saturated green — punchier than pastel mint */
+  --accent: #1fd97e;
+  --accent2: #0fae66;
+  --accent-glow: #22e08a;
+
+  --border-color: rgba(241, 243, 239, 0.12);
+
+  /* glassmorphism tokens — light fill + bright edge against the dark base */
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-blur: 24px;
+  --glass-highlight: rgba(255, 255, 255, 0.08);
+  --glass-shadow: rgba(0, 0, 0, 0.35);
+
+  --grid-line-fine: rgba(241, 243, 239, 0.05);
+  --grid-line-heavy: rgba(241, 243, 239, 0.09);
+
+  --theme-x: 50%;
+  --theme-y: 50%;
+  --theme-radius: 150vmax;
+
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  /* Clean studio-white base, not stark pure white */
+  --bg: #fafaf8;
+  --bg2: #f1f2ee;
+  --bg3: #e8eae4;
+
+  --text: #181c1d;
+  --muted: #667085;
+
+  --accent: #0fae66;
+  --accent2: #07703f;
+  --accent-glow: #1fd97e;
+
+  --border-color: rgba(20, 24, 26, 0.12);
+
+  /* glassmorphism tokens — frosted-white fill against the light base */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.85);
+  --glass-highlight: rgba(255, 255, 255, 0.9);
+  --glass-shadow: rgba(20, 24, 26, 0.1);
+
+  --grid-line-fine: rgba(20, 24, 26, 0.06);
+  --grid-line-heavy: rgba(20, 24, 26, 0.1);
+
+  color-scheme: light;
 }
 
 html { scroll-behavior: smooth; }
 
+/* Blueprint grid lives directly on body's own background — this always
+   paints behind all content with zero z-index/stacking-context tricks,
+   so it can't interfere with mix-blend-mode anywhere on the page. */
 body {
   background-color: var(--bg);
+  background-attachment: fixed;
+  background-image:
+    repeating-linear-gradient(to right, var(--grid-line-fine) 0 1px, transparent 1px 80px),
+    repeating-linear-gradient(to bottom, var(--grid-line-fine) 0 1px, transparent 1px 80px),
+    repeating-linear-gradient(to right, var(--grid-line-heavy) 0 1px, transparent 1px 400px),
+    repeating-linear-gradient(to bottom, var(--grid-line-heavy) 0 1px, transparent 1px 400px);
   color: var(--text);
-  font-family: var(--font-dm-sans);
+  font-family: var(--font-mono);
   overflow-x: hidden;
+  position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  box-shadow:
+    0 1px 0 var(--glass-highlight) inset,
+    0 12px 40px var(--glass-shadow);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Framer-style blurred gradient blob, sits behind hero content */
+.gradient-blob {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(80px);
+  background: radial-gradient(circle, var(--accent-glow) 0%, var(--accent) 45%, transparent 75%);
+  opacity: 0.5;
 }
 
 /* Hide default cursor on devices that support hover so our custom cursor shines */
@@ -57,4 +135,28 @@ body {
 ::selection {
   background-color: var(--accent2);
   color: var(--bg);
+}
+
+/* Theme toggle sweep — circular reveal expanding from the toggle button,
+   via the View Transitions API (no-op / instant fallback elsewhere). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
+  clip-path: circle(0px at var(--theme-x) var(--theme-y));
+  animation: theme-sweep 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes theme-sweep {
+  to {
+    clip-path: circle(var(--theme-radius) at var(--theme-x) var(--theme-y));
+  }
 }

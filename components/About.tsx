@@ -26,8 +26,8 @@ export default function About() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" ref={ref} className="py-20 md:py-28 px-6 md:px-12 border-t border-brand-border">
-      <div className="text-xs tracking-widest uppercase text-brand-accent2 mb-12 flex items-center gap-4">
+    <section id="about" ref={ref} className="py-20 md:py-28 px-6 md:px-12">
+      <div className="text-xs tracking-widest uppercase text-brand-muted mb-12 flex items-center gap-4">
         About <span className="text-brand-muted text-[10px]">01</span>
       </div>
 
@@ -39,7 +39,7 @@ export default function About() {
         >
           <h2 className="font-syne text-[clamp(2rem,4vw,3.5rem)] font-extrabold leading-tight tracking-tight">
             Frontend engineer who<br />
-            <em className="italic text-brand-accent font-normal">cares about design.</em>
+            <em className="italic text-brand-text font-normal">cares about design.</em>
           </h2>
 
           <div className="grid grid-cols-2 gap-4 md:gap-6 mt-10 md:mt-12">
@@ -50,7 +50,7 @@ export default function About() {
               const suffix = match ? match[2] : "";
 
               return (
-                <div key={i} className="p-4 md:p-6 border border-brand-border bg-brand-bg2">
+                <div key={i} className="glass p-4 md:p-6 rounded-xl">
                   <AnimatedCounter value={number} suffix={suffix} inView={inView} />
                   <div className="text-xs md:text-sm text-brand-muted tracking-wide">{s.label}</div>
                 </div>

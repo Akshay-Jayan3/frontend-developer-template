@@ -1,22 +1,24 @@
-import type { Metadata } from "next";
-import { Syne, DM_Sans } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Fraunces, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import SmoothScroll from "@/components/SmoothScroll";
 import GridOverlay from "@/components/GridOverlay";
+import ChatWidget from "@/components/ChatWidget";
 import { portfolio } from "@/data/portfolio";
 
-const syne = Syne({
-  variable: "--font-syne",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["400", "700", "800"],
+  weight: ["400", "500", "600", "700", "900"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
-  weight: ["300", "400"],
+  weight: ["400", "500", "700"],
   display: "swap",
 });
 
@@ -66,17 +68,45 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  alternates: {
+    canonical: "/",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0c0e0d" },
+    { media: "(prefers-color-scheme: light)", color: "#fafaf8" },
+  ],
+  colorScheme: "dark light",
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: portfolio.name,
+  jobTitle: portfolio.role,
+  url: `https://${portfolio.contact.portfolio}`,
+  email: `mailto:${portfolio.contact.email}`,
+  address: { "@type": "PostalAddress", addressLocality: portfolio.location },
+  sameAs: [portfolio.contact.github, `https://www.${portfolio.contact.linkedin}`],
+  description: portfolio.bio[0],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${syne.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${jetbrainsMono.variable}`}>
       <body className="cursor-default md:cursor-none">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         <GridOverlay />
         <CustomCursor />
         <SmoothScroll>
           {children}
         </SmoothScroll>
+        <ChatWidget />
       </body>
     </html>
   );

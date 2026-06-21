@@ -18,6 +18,10 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       touchMultiplier: 2,
     });
 
+    // exposed so other components (e.g. ChatWidget) can lock/unlock scroll —
+    // Lenis drives scroll programmatically, so body overflow:hidden alone won't stop it
+    window.__lenis = lenis;
+
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -27,6 +31,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     return () => {
       lenis.destroy();
+      window.__lenis = undefined;
     };
   }, []);
 

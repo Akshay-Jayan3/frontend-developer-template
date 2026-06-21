@@ -2,7 +2,21 @@
 import { motion, useReducedMotion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import { portfolio } from "@/data/portfolio";
 import { useRef } from "react";
+import dynamic from "next/dynamic";
 import { CircleScribble } from "@/components/Doodle";
+import Marquee from "@/components/Marquee";
+
+// Client-only: its per-letter motion values render with different float
+// precision on server vs client, causing a hydration mismatch. The aria-label
+// already covers SEO/a11y, so skipping SSR here is safe.
+const AnimatedName = dynamic(() => import("@/components/AnimatedName"), {
+  ssr: false,
+  loading: () => (
+    <h1 className="font-display text-[clamp(3.2rem,13vw,11rem)] font-black leading-[0.88] tracking-tight text-brand-text">
+      {portfolio.name}
+    </h1>
+  ),
+});
 
 const wordAnimation = {
   hidden: { opacity: 0, y: 20 },
@@ -51,82 +65,74 @@ export default function Hero() {
 
   return (
     <section ref={containerRef} className="min-h-screen flex flex-col justify-end px-6 md:px-12 py-20 relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.08] mix-blend-screen"
-        style={{
-          background: `
-            radial-gradient(ellipse 60% 50% at 70% 40%, var(--accent) 0%, transparent 70%),
-            radial-gradient(ellipse 40% 60% at 20% 80%, var(--accent2) 0%, transparent 60%)
-          `
-        }}
+      {/* Framer-style blurred gradient blobs — kept clear of the bottom-anchored content */}
+      <div className="gradient-blob w-[420px] h-[420px] top-10 -right-32 md:w-[560px] md:h-[560px]" style={{ opacity: 0.35 }} />
+      <div
+        className="gradient-blob w-[280px] h-[280px] top-1/3 -left-24 md:w-[360px] md:h-[360px]"
+        style={{ opacity: 0.15 }}
       />
 
       <motion.div style={{ y, opacity }} className="z-10 w-full">
         <motion.div
           variants={containerAnimation} initial="hidden" animate="show"
-          className="text-xs md:text-sm tracking-widest uppercase text-brand-accent2 mb-6 flex items-center gap-3"
+          className="text-xs md:text-sm tracking-widest uppercase text-brand-muted mb-6 flex items-center gap-3"
         >
           <motion.span variants={wordAnimation} className="block w-8 h-px bg-brand-accent2" />
           <motion.span variants={wordAnimation}>{portfolio.role}</motion.span>
         </motion.div>
 
-        <motion.h1
-          variants={containerAnimation} initial="hidden" animate="show"
-          className="font-syne text-[clamp(3rem,8vw,8rem)] font-extrabold leading-[0.95] md:leading-[0.92] tracking-tighter text-brand-text mb-6"
-        >
-          <div className="overflow-hidden flex flex-wrap gap-x-4">
-            {portfolio.tagline[0].split(' ').map((word, i) => (
-              <motion.span key={i} variants={wordAnimation} className="inline-block">{word}</motion.span>
-            ))}
-          </div>
-          <motion.div
-            className="relative inline-block cursor-none"
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            style={{ x: smoothX, y: smoothY }}
-          >
-            <div className="text-brand-accent overflow-hidden">
-              {portfolio.tagline[1].split(' ').map((word, i) => (
-                <motion.span key={i} variants={wordAnimation} className="inline-block mr-4 md:mr-8">{word}</motion.span>
-              ))}
-            </div>
-            <CircleScribble
-              delay={1.3}
-              className="pointer-events-none absolute -left-[5%] -top-[28%] w-[110%] h-[156%]"
-            />
-          </motion.div><br />
-          <div className="overflow-hidden flex flex-wrap gap-x-4">
-            {portfolio.tagline[2].split(' ').map((word, i) => (
-              <motion.span key={i} variants={wordAnimation} className="inline-block">{word}</motion.span>
-            ))}
-          </div>
-        </motion.h1>
+        <div className="mb-4">
+          <AnimatedName name={portfolio.name} />
+        </div>
 
         <motion.div
           variants={containerAnimation} initial="hidden" animate="show"
-          className="flex flex-col md:flex-row justify-between items-start md:items-end mt-10 pt-8 border-t border-brand-border gap-8"
+          className="relative inline-block mb-10"
         >
-          <p className="max-w-[38ch] text-base md:text-lg text-brand-muted leading-relaxed font-light">
-            {portfolio.heroIntro}
-          </p>
+          <span
+            className="relative inline-block font-display italic text-[clamp(1.5rem,3vw,2.5rem)] text-brand-text cursor-none"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+          >
+            <motion.span style={{ x: smoothX, y: smoothY }} className="relative inline-block">
+              {portfolio.tagline.join(" ")}
+              <CircleScribble
+                delay={1.3}
+                className="pointer-events-none absolute -left-[6%] -top-[35%] w-[112%] h-[175%]"
+              />
+            </motion.span>
+          </span>
+        </motion.div>
+
+        <motion.div
+          variants={containerAnimation} initial="hidden" animate="show"
+          className="flex flex-col md:flex-row justify-between items-start md:items-end mt-16 md:mt-20 gap-8"
+        >
           <div className="flex flex-wrap items-center gap-3">
-            <a href="#work" className="text-sm px-5 py-2 border border-brand-accent2 text-brand-accent bg-transparent rounded-sm tracking-wide no-underline transition-all duration-200 hover:bg-brand-accent2 hover:text-brand-bg">
+            <a href="#work" className="text-sm px-5 py-2 bg-brand-text text-brand-bg rounded-sm tracking-wide no-underline transition-opacity duration-200 hover:opacity-85">
               View work
             </a>
-            <a href="https://pixeldosa.gumroad.com/l/isjsu" target="_blank" rel="noreferrer" className="text-sm px-5 py-2 border border-brand-border text-brand-muted bg-transparent rounded-sm tracking-wide no-underline transition-colors duration-200 hover:text-brand-text hover:border-brand-accent2">
+            <a href="https://pixeldosa.gumroad.com/l/isjsu" target="_blank" rel="noreferrer" className="text-sm px-5 py-2 bg-brand-text/5 border border-brand-text/15 text-brand-text rounded-sm tracking-wide no-underline transition-colors duration-200 hover:bg-brand-text/10">
               Download Hoot
             </a>
           </div>
           <div className="text-xs tracking-widest uppercase text-brand-muted flex md:flex-col items-center gap-2">
-            <motion.div 
+            <motion.div
               initial={{ height: 0 }}
               animate={{ height: 48 }}
               transition={{ duration: 1, delay: 0.8, ease: "circOut" }}
-              className="hidden md:block w-px bg-gradient-to-b from-brand-muted to-transparent" 
+              className="hidden md:block w-px bg-gradient-to-b from-brand-muted to-transparent"
             />
             <motion.span variants={wordAnimation}>Scroll</motion.span>
           </div>
         </motion.div>
+
+        <div className="mt-12 md:mt-16">
+          <Marquee
+            items={[portfolio.role, "DESIGN + CODE", "AVAILABLE FOR WORK"]}
+            speed={26}
+          />
+        </div>
       </motion.div>
     </section>
   );

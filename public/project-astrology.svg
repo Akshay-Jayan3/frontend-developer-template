@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="920" height="560" viewBox="0 0 920 560" fill="none">
-  <rect width="920" height="560" fill="#080808"/>
-  <rect x="38" y="38" width="844" height="484" rx="20" fill="#0F0F0F" stroke="#2A2927"/>
-  <circle cx="460" cy="208" r="98" stroke="#C9A96E" stroke-width="2"/>
-  <circle cx="460" cy="208" r="62" stroke="#E8D5A3" stroke-width="2"/>
-  <path d="M460 112v192M364 208h192M392 140l136 136M528 140L392 276" stroke="#3D3525" stroke-width="2"/>
-  <circle cx="460" cy="208" r="16" fill="#E8D5A3"/>
-  <g fill="#E8D5A3">
+  <rect width="920" height="560" fill="#0c0e0d"/>
+  <rect x="38" y="38" width="844" height="484" rx="20" fill="#141715" stroke="#262b27"/>
+  <circle cx="460" cy="208" r="98" stroke="#0fae66" stroke-width="2"/>
+  <circle cx="460" cy="208" r="62" stroke="#1fd97e" stroke-width="2"/>
+  <path d="M460 112v192M364 208h192M392 140l136 136M528 140L392 276" stroke="#123a28" stroke-width="2"/>
+  <circle cx="460" cy="208" r="16" fill="#1fd97e"/>
+  <g fill="#1fd97e">
     <circle cx="184" cy="132" r="3"/>
     <circle cx="242" cy="248" r="2"/>
     <circle cx="706" cy="128" r="3"/>
     <circle cx="742" cy="268" r="2"/>
     <circle cx="642" cy="88" r="2"/>
   </g>
-  <rect x="220" y="348" width="480" height="22" rx="11" fill="#F0EDE6"/>
-  <rect x="280" y="392" width="360" height="12" rx="6" fill="#8F8982"/>
-  <rect x="340" y="432" width="240" height="38" rx="2" fill="#C9A96E"/>
-  <text x="360" y="457" fill="#080808" font-family="Arial, sans-serif" font-size="16" font-weight="700">Book Consultation</text>
+  <rect x="220" y="348" width="480" height="22" rx="11" fill="#f1f3ef"/>
+  <rect x="280" y="392" width="360" height="12" rx="6" fill="#8b9590"/>
+  <rect x="340" y="432" width="240" height="38" rx="2" fill="#0fae66"/>
+  <text x="360" y="457" fill="#0c0e0d" font-family="Arial, sans-serif" font-size="16" font-weight="700">Book Consultation</text>
 </svg>
