@@ -1,21 +1,24 @@
 "use client";
-import { motion, useInView, useSpring, useTransform } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { motion, useInView, animate } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
 import { portfolio } from "@/data/portfolio";
 
 function AnimatedCounter({ value, suffix, inView }: { value: number, suffix: string, inView: boolean }) {
-  const spring = useSpring(0, { duration: 2000, bounce: 0 });
-  const display = useTransform(spring, (current) => Math.floor(current));
+  const [display, setDisplay] = useState(0);
 
   useEffect(() => {
-    if (inView) {
-      spring.set(value);
-    }
-  }, [inView, spring, value]);
+    if (!inView) return;
+    const controls = animate(0, value, {
+      duration: 1.3,
+      ease: "easeOut",
+      onUpdate: (v) => setDisplay(Math.floor(v)),
+    });
+    return () => controls.stop();
+  }, [inView, value]);
 
   return (
     <div className="font-syne text-3xl md:text-4xl font-extrabold text-brand-accent leading-none mb-2 flex">
-      <motion.span>{display}</motion.span>
+      <span>{display}</span>
       <span>{suffix}</span>
     </div>
   );

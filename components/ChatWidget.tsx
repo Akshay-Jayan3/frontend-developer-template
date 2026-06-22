@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { portfolio } from "@/data/portfolio";
+import PixelCompanion from "@/components/PixelCompanion";
 
 const ROUTED_SECTIONS = new Set(["work", "contact"]);
 const ASSISTANT_NAME = "Atom";
@@ -94,16 +95,21 @@ export default function ChatWidget() {
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "Close AI assistant" : "Open AI assistant"}
-        className="fixed bottom-5 right-5 md:right-8 z-50 flex items-center justify-center h-14 w-14 rounded-full text-brand-bg"
-        style={{
-          backgroundColor: "var(--accent)",
-          boxShadow: "0 0 0 4px var(--glass-bg), 0 8px 28px var(--accent-glow)",
+        className="glass fixed bottom-5 right-5 md:right-8 z-50 flex items-center justify-center h-16 w-16 rounded-full"
+        style={{ backgroundColor: "var(--bg2)" }}
+        animate={{
+          boxShadow: open
+            ? "0 12px 40px var(--glass-shadow)"
+            : [
+                "0 12px 40px var(--glass-shadow), 0 0 0px var(--accent-glow)",
+                "0 12px 40px var(--glass-shadow), 0 0 18px var(--accent-glow)",
+                "0 12px 40px var(--glass-shadow), 0 0 0px var(--accent-glow)",
+              ],
         }}
-        animate={{ boxShadow: open ? "0 0 0 4px var(--glass-bg)" : ["0 0 0 4px var(--glass-bg), 0 0 0px var(--accent-glow)", "0 0 0 4px var(--glass-bg), 0 0 22px var(--accent-glow)", "0 0 0 4px var(--glass-bg), 0 0 0px var(--accent-glow)"] }}
         transition={{ duration: 2.2, repeat: open ? 0 : Infinity, ease: "easeInOut" }}
         whileTap={{ scale: 0.92 }}
       >
-        <span className="text-xl">{open ? "×" : "✦"}</span>
+        <PixelCompanion active={open} />
       </motion.button>
 
       <AnimatePresence>
