@@ -12,7 +12,7 @@ import Marquee from "@/components/Marquee";
 const AnimatedName = dynamic(() => import("@/components/AnimatedName"), {
   ssr: false,
   loading: () => (
-    <h1 className="font-display text-[clamp(3.2rem,13vw,11rem)] font-black leading-[0.88] tracking-tight text-brand-text">
+    <h1 className="font-display text-[clamp(2.5rem,13vw,11rem)] font-black leading-[0.88] tracking-tight text-brand-text">
       {portfolio.name}
     </h1>
   ),

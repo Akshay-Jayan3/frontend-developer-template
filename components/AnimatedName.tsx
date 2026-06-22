@@ -24,7 +24,7 @@ export default function AnimatedName({ name }: { name: string }) {
 
   return (
     <h1
-      className="font-display text-[clamp(3.2rem,13vw,11rem)] font-black leading-[0.88] tracking-tight text-brand-text select-none"
+      className="font-display text-[clamp(2.5rem,13vw,11rem)] font-black leading-[0.88] tracking-tight text-brand-text select-none"
       aria-label={name}
     >
       {letters.map((l, i) => (

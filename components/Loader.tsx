@@ -85,7 +85,7 @@ export default function Loader() {
           className="fixed inset-0 z-[9999] flex flex-col items-center justify-center gap-8"
           style={{ backgroundColor: "var(--bg)" }}
         >
-          <div className="h-12 overflow-hidden">
+          <div className="h-16 md:h-20 overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.div
                 key={greetingIndex}
@@ -93,7 +93,7 @@ export default function Loader() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -16 }}
                 transition={{ duration: 0.18, ease: "easeOut" }}
-                className="font-display italic text-3xl md:text-4xl text-brand-text"
+                className="font-display italic text-5xl md:text-7xl text-brand-text"
               >
                 {GREETINGS[greetingIndex]}
               </motion.div>
@@ -101,10 +101,10 @@ export default function Loader() {
           </div>
 
           <div className="flex items-end gap-1 font-mono tabular-nums">
-            <span className="text-6xl md:text-8xl font-bold text-brand-text leading-none">
+            <span className="text-xl md:text-2xl font-bold text-brand-muted leading-none">
               {progress}
             </span>
-            <span className="text-2xl md:text-3xl text-brand-accent mb-1">%</span>
+            <span className="text-sm md:text-base text-brand-muted mb-0.5">%</span>
           </div>
 
           <div className="w-48 md:w-64 h-px bg-brand-border overflow-hidden">
