@@ -89,7 +89,12 @@ export default function WorkTeaser() {
 
   return (
     <section id="work" ref={ref} className="py-20 md:py-28 px-6 md:px-12" style={{ perspective: "1000px" }}>
-      <div className="flex items-center justify-between mb-12">
+      <motion.div
+        initial={{ opacity: 0, x: -12 }}
+        animate={inView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="flex items-center justify-between mb-12"
+      >
         <div className="text-xs tracking-widest uppercase text-brand-muted flex items-center gap-4">
           Selected Work <span className="text-brand-muted text-[10px]">04</span>
         </div>
@@ -99,7 +104,7 @@ export default function WorkTeaser() {
         >
           View all →
         </a>
-      </div>
+      </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {featured.map((project, i) => (

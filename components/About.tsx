@@ -30,9 +30,14 @@ export default function About() {
 
   return (
     <section id="about" ref={ref} className="py-20 md:py-28 px-6 md:px-12">
-      <div className="text-xs tracking-widest uppercase text-brand-muted mb-12 flex items-center gap-4">
+      <motion.div
+        initial={{ opacity: 0, x: -12 }}
+        animate={inView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="text-xs tracking-widest uppercase text-brand-muted mb-12 flex items-center gap-4"
+      >
         About <span className="text-brand-muted text-[10px]">01</span>
-      </div>
+      </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-start">
         <motion.div

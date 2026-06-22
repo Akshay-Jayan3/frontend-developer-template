@@ -19,18 +19,34 @@ function parseReply(raw: string): { text: string; navTo?: string } {
   return { text, navTo };
 }
 
+const getInitialMessages = (): Message[] => [
+  {
+    role: "assistant",
+    content: `Hey, I'm ${ASSISTANT_NAME}, ${portfolio.name.split(" ")[0]}'s AI assistant. Ask me about his work, skills, or how to reach him — I can point you to the right part of the page too.`,
+  },
+];
+
 export default function ChatWidget() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: "assistant",
-      content: `Hey, I'm ${ASSISTANT_NAME}, ${portfolio.name.split(" ")[0]}'s AI assistant. Ask me about his work, skills, or how to reach him — I can point you to the right part of the page too.`,
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>(getInitialMessages);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const closeChat = () => {
+    setOpen(false);
+    setMessages(getInitialMessages());
+    setInput("");
+  };
+
+  const toggleChat = () => {
+    if (open) {
+      closeChat();
+    } else {
+      setOpen(true);
+    }
+  };
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
@@ -86,14 +102,14 @@ export default function ChatWidget() {
     } else {
       document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
     }
-    setOpen(false);
+    closeChat();
   };
 
   return (
     <>
       <motion.button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={toggleChat}
         aria-label={open ? "Close AI assistant" : "Open AI assistant"}
         className="glass fixed bottom-5 right-5 md:right-8 z-50 flex items-center justify-center h-16 w-16 rounded-full"
         style={{ backgroundColor: "var(--bg2)" }}
@@ -121,6 +137,7 @@ export default function ChatWidget() {
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="glass fixed bottom-24 right-5 md:right-8 z-50 w-[min(92vw,360px)] h-[min(70vh,480px)] flex flex-col rounded-2xl overflow-hidden"
             style={{ backgroundColor: "var(--bg2)" }}
+            data-lenis-prevent
           >
             <div className="px-4 py-3 border-b border-brand-border flex items-center justify-between gap-2">
               <div className="flex items-center gap-2">
@@ -128,7 +145,7 @@ export default function ChatWidget() {
                 <span className="text-sm font-bold text-brand-text">{ASSISTANT_NAME} · {portfolio.name.split(" ")[0]}'s assistant</span>
               </div>
               <button
-                onClick={() => setOpen(false)}
+                onClick={closeChat}
                 aria-label="Close chat"
                 className="text-brand-muted hover:text-brand-text text-sm w-6 h-6 flex items-center justify-center rounded-full"
               >

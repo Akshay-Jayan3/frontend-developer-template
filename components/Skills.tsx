@@ -88,9 +88,14 @@ export default function Skills() {
 
   return (
     <section id="skills" ref={ref} className="py-20 md:py-28 px-6 md:px-12 relative" style={{ perspective: "1000px" }}>
-      <div className="text-xs tracking-widest uppercase text-brand-muted mb-12 flex items-center gap-4">
+      <motion.div
+        initial={{ opacity: 0, x: -12 }}
+        animate={inView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="text-xs tracking-widest uppercase text-brand-muted mb-12 flex items-center gap-4"
+      >
         Skills <span className="text-brand-muted text-[10px]">03</span>
-      </div>
+      </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {portfolio.skills.map((skill, i) => (

@@ -12,7 +12,7 @@ import Marquee from "@/components/Marquee";
 const AnimatedName = dynamic(() => import("@/components/AnimatedName"), {
   ssr: false,
   loading: () => (
-    <h1 className="font-display text-[clamp(2.5rem,13vw,11rem)] font-black leading-[0.88] tracking-tight text-brand-text">
+    <h1 className="font-display text-[clamp(2.5rem,9vw,7.5rem)] font-black leading-[0.88] tracking-tight text-brand-text">
       {portfolio.name}
     </h1>
   ),
@@ -81,7 +81,7 @@ export default function Hero() {
           <motion.span variants={wordAnimation}>{portfolio.role}</motion.span>
         </motion.div>
 
-        <div className="mb-4">
+        <div className="mb-8 md:mb-4">
           <AnimatedName name={portfolio.name} />
         </div>
 
