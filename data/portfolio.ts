@@ -15,7 +15,7 @@ export const portfolio = {
 
   stats: [
     { value: "3+", label: "Years building" },
-    { value: "3", label: "Products shipped" },
+    { value: "5", label: "Projects delivered" },
     { value: "1", label: "Design system built" },
     { value: "40+", label: "Components authored" },
   ],
