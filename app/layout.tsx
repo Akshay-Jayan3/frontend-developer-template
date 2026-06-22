@@ -5,6 +5,7 @@ import CustomCursor from "@/components/CustomCursor";
 import SmoothScroll from "@/components/SmoothScroll";
 import GridOverlay from "@/components/GridOverlay";
 import ChatWidget from "@/components/ChatWidget";
+import Loader from "@/components/Loader";
 import { portfolio } from "@/data/portfolio";
 
 const fraunces = Fraunces({
@@ -101,6 +102,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
+        <Loader />
         <GridOverlay />
         <CustomCursor />
         <SmoothScroll>
