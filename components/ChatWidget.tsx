@@ -141,7 +141,16 @@ export default function ChatWidget() {
           >
             <div className="px-4 py-3 border-b border-brand-border flex items-center justify-between gap-2">
               <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full" style={{ backgroundColor: "var(--accent)" }} />
+                <span className="relative flex h-2 w-2">
+                  <span
+                    className="absolute inline-flex h-full w-full rounded-full animate-ping"
+                    style={{ backgroundColor: "var(--accent)" }}
+                  />
+                  <span
+                    className="relative inline-flex h-2 w-2 rounded-full"
+                    style={{ backgroundColor: "var(--accent)" }}
+                  />
+                </span>
                 <span className="text-sm font-bold text-brand-text">{ASSISTANT_NAME} · {portfolio.name.split(" ")[0]}'s assistant</span>
               </div>
               <button

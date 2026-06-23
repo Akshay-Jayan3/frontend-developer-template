@@ -106,25 +106,14 @@ export default function Hero() {
 
         <motion.div
           variants={containerAnimation} initial="hidden" animate="show"
-          className="flex flex-col md:flex-row justify-between items-start md:items-end mt-16 md:mt-20 gap-8"
+          className="flex flex-wrap items-center gap-3 mt-16 md:mt-20"
         >
-          <div className="flex flex-wrap items-center gap-3">
-            <a href="#work" className="text-sm px-5 py-2 bg-brand-text text-brand-bg rounded-sm tracking-wide no-underline transition-opacity duration-200 hover:opacity-85">
-              View work
-            </a>
-            <a href="https://pixeldosa.gumroad.com/l/isjsu" target="_blank" rel="noreferrer" className="text-sm px-5 py-2 bg-brand-text/5 border border-brand-text/15 text-brand-text rounded-sm tracking-wide no-underline transition-colors duration-200 hover:bg-brand-text/10">
-              Download Hoot
-            </a>
-          </div>
-          <div className="text-xs tracking-widest uppercase text-brand-muted flex md:flex-col items-center gap-2">
-            <motion.div
-              initial={{ height: 0 }}
-              animate={{ height: 48 }}
-              transition={{ duration: 1, delay: 0.8, ease: "circOut" }}
-              className="hidden md:block w-px bg-gradient-to-b from-brand-muted to-transparent"
-            />
-            <motion.span variants={wordAnimation}>Scroll</motion.span>
-          </div>
+          <a href="#work" className="text-sm px-5 py-2 bg-brand-text text-brand-bg rounded-sm tracking-wide no-underline transition-opacity duration-200 hover:opacity-85">
+            View work
+          </a>
+          <a href="https://pixeldosa.gumroad.com/l/isjsu" target="_blank" rel="noreferrer" className="text-sm px-5 py-2 bg-brand-text/5 border border-brand-text/15 text-brand-text rounded-sm tracking-wide no-underline transition-colors duration-200 hover:bg-brand-text/10">
+            Download Hoot
+          </a>
         </motion.div>
 
         <div className="mt-12 md:mt-16">

@@ -1,11 +1,10 @@
 export const portfolio = {
   name: "Akshay Jayan",
   role: "Frontend Engineer | React | TypeScript | Design Systems",
-  tagline: ["Building", "interfaces", "that work."],
-  heroIntro: "Frontend Engineer with 3+ years building React, TypeScript, design systems, and Electron apps for production teams.",
+  tagline: ["Turning", "ideas", "into products."],
 
   bio: [
-    "Frontend Engineer with 3+ years of experience building scalable web and desktop applications. Focused on creating interfaces that are clear, usable, and production-ready.",
+    "Frontend Engineer with 3+ years building products, not just interfaces — scalable web and desktop applications that are clear, usable, and production-ready.",
     "I work across the boundary of design and development - building reusable component systems, improving UI consistency, and translating design into real products.",
     "Currently exploring design engineering while open to frontend roles and select freelance work.",
   ],

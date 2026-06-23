@@ -7,7 +7,7 @@ export default function Footer() {
         {portfolio.name}. - {portfolio.role}
       </div>
       <div className="text-xs text-brand-muted">
-        Built with Next.js
+        Designed and built by {portfolio.name.split(" ")[0]}
       </div>
     </footer>
   );

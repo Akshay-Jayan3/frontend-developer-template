@@ -16,7 +16,6 @@ export default function GridOverlay() {
       <Corner position="left-4 top-4 md:left-6 md:top-6" label="01" />
       <Corner position="right-4 top-4 md:right-6 md:top-6" label="02" />
       <Corner position="bottom-4 left-4 md:bottom-6 md:left-6" label="03" />
-      <Corner position="bottom-4 right-4 md:bottom-6 md:right-6" label="04" />
     </div>
   );
 }
